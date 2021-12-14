@@ -27,7 +27,7 @@
     End Sub
 
     Private Sub EqualClick(sender As Object, e As EventArgs) Handles EqualBtn.Click
-        _buffer = Calc(_op, _buffer, DisplayLbl.Text)
+        _buffer = Calc(_op, _buffer, Decimal.Parse(DisplayLbl.Text))
         If _buffer < Integer.MaxValue Then
             If Decimal.ToInt32(_buffer) = _buffer Then
                 _buffer = Decimal.ToInt32(_buffer)
@@ -50,7 +50,7 @@
         If _clear Then
             DisplayLbl.Text = ""
         End If
-        If txt = "." And DisplayLbl.Text.Contains(".") Then
+        If DisplayLbl.Text.Length >= 8 Or (txt = "." And DisplayLbl.Text.Contains(".")) Then
             Return
         End If
         DisplayLbl.Text += txt
@@ -74,18 +74,17 @@
         _op = txt
     End Sub
 
-    Private Shared Function Calc(ByVal op As String, ByVal buffer As Decimal?, ByVal labelText As String) As Decimal
-        Dim labelNum As Decimal = Decimal.Parse(labelText)
+    Private Shared Function Calc(ByVal op As String, ByVal num1 As Decimal, ByVal num2 As Decimal) As Decimal
         If op = "+" Then
-            buffer += labelNum
+            num1 += num2
         ElseIf op = "-" Then
-            buffer -= labelNum
+            num1 -= num2
         ElseIf op = "*" Then
-            buffer *= labelNum
-        ElseIf op = "/" And labelNum <> 0 Then
-            buffer /= labelNum
+            num1 *= num2
+        ElseIf op = "/" And num2 <> 0 Then      ' if dividing by 0 just do nothing :)
+            num1 /= num2
         End If
-        Return buffer
+        Return num1
     End Function
 
     Private Shared Function GetTextOfControl(sender As Object) As String

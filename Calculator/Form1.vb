@@ -94,27 +94,3 @@
 
 End Class
 
-
-'' Over kill but more efficient. if you also removed the dictionary checks.
-'' Decided against it as need the checks imo as a function should check values
-'Private Sub Form1_KeyUp(sender As Object, e As KeyEventArgs) Handles MyBase.KeyUp
-'    Select Case e.KeyCode
-'        Case Keys.NumPad0, Keys.NumPad1, Keys.NumPad2, Keys.NumPad3, Keys.NumPad4, Keys.NumPad5 _
-'            , Keys.NumPad6, Keys.NumPad7, Keys.NumPad8, Keys.NumPad9
-'            Dim num As Integer = e.KeyCode - Keys.NumPad0
-'            AppendTextToNumber(num.ToString().First())
-
-'        Case Keys.Decimal
-'            AppendTextToNumber("."c)
-'        Case Keys.Add
-'            OperatorHandle("+")
-'        Case Keys.Subtract
-'            OperatorHandle("-")
-'        Case Keys.Multiply
-'            OperatorHandle("*")
-'        Case Keys.Divide
-'            OperatorHandle("/")
-'        Case Keys.Oemplus
-'            OperatorHandle("=")
-'    End Select
-'End Sub

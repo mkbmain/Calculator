@@ -50,7 +50,7 @@
         If _clear Then
             DisplayLbl.Text = ""
         End If
-        If DisplayLbl.Text.Length >= 8 Or (txt = "." And DisplayLbl.Text.Contains(".")) Then
+        If DisplayLbl.Text.Length >= 8 Or (txt = "." AndAlso DisplayLbl.Text.Contains(".")) Then
             Return
         End If
         DisplayLbl.Text += txt
@@ -81,7 +81,7 @@
             num1 -= num2
         ElseIf op = "*" Then
             num1 *= num2
-        ElseIf op = "/" And num2 <> 0 Then      ' if dividing by 0 just do nothing :)
+        ElseIf op = "/" AndAlso num2 <> 0 Then      ' if dividing by 0 just do nothing :)
             num1 /= num2
         End If
         Return num1

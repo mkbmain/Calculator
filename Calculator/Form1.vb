@@ -69,15 +69,18 @@
     End Sub
 
     Private Shared Function Calc(ByVal op As String, ByVal num1 As Decimal, ByVal num2 As Decimal) As Decimal
-        If op = "+" Then
-            num1 += num2
-        ElseIf op = "-" Then
-            num1 -= num2
-        ElseIf op = "*" Then
-            num1 *= num2
-        ElseIf op = "/" AndAlso num2 <> 0 Then      ' if dividing by 0 just do nothing :)
-            num1 /= num2
-        End If
+        Select Case op
+            Case "+"
+                num1 += num2
+            Case "-"
+                num1 -= num2
+            Case "*"
+                num1 *= num2
+            Case "/"
+                If num2 <> 0 Then      ' if dividing by 0 just do nothing :)
+                    num1 /= num2
+                End If
+        End Select
         Return num1
     End Function
 

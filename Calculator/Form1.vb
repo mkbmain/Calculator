@@ -1,7 +1,7 @@
 ﻿Public Class Form1
     Private Const Zero = "0"
     Private _buffer As Decimal = 0
-    Private _op As String = Nothing
+    Private _op As Char? = Nothing
     Private _clear As Boolean = True
     Private Shared ReadOnly AcceptedChars As Dictionary(Of Char, Boolean) = "0123456789.".ToDictionary(Function(k) k, Function(c) True)
     Private Shared ReadOnly AcceptedOperators As Dictionary(Of Char, Boolean) = "+-=*/".ToDictionary(Function(k) k, Function(c) True)
@@ -41,7 +41,7 @@
     End Sub
 
     Private Sub AppendTextToNumber(ByVal txt As Char)
-        If AcceptedChars.ContainsKey(txt) = False Or DisplayLbl.Text.Length >= 8 Or (txt = "." AndAlso DisplayLbl.Text.Contains(".")) Then
+        If AcceptedChars.ContainsKey(txt) = False Or DisplayLbl.Text.Length >= 8 Or (txt = "." AndAlso DisplayLbl.Text.Contains("."c)) Then
             Return
         End If
         If _clear Then
@@ -68,15 +68,15 @@
         _op = txt
     End Sub
 
-    Private Shared Function Calc(ByVal op As String, ByVal num1 As Decimal, ByVal num2 As Decimal) As Decimal
+    Private Shared Function Calc(ByVal op As Char, ByVal num1 As Decimal, ByVal num2 As Decimal) As Decimal
         Select Case op
-            Case "+"
+            Case "+"c
                 num1 += num2
-            Case "-"
+            Case "-"c
                 num1 -= num2
-            Case "*"
+            Case "*"c
                 num1 *= num2
-            Case "/"
+            Case "/"c
                 If num2 <> 0 Then      ' if dividing by 0 just do nothing :)
                     num1 /= num2
                 End If
